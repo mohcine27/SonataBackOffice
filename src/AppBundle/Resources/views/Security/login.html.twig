@@ -1,0 +1,48 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="row">
+        <div class="col s12 m8 offset-m2">
+            <h2>Se connecter</h2>
+        </div>
+    </div>
+    <div class="row">
+        {% if error %}
+             <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+        {% endif %}
+        <div class="col s12 m8 offset-m2">
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" >
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+{# j'ai enleve ça {{ 'security.login.password'|trans }} #}
+                <div class="form-group">
+                        <label for="username" class="col-sm-2 control-label">Login/Email</label>
+						<div class="col-sm-4">
+							<input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required="required" />
+						</div>
+                </div>
+				
+                <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Mot de passe</label>
+					<div class="col-sm-4">
+                        <input type="password" id="password" class="form-control" name="_password" required="required" />
+                    </div>
+                </div>
+				
+                <div class="form-group">
+					<label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>					                 
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+					 <div class="reset-wrap"><a href="{{ path('fos_user_resetting_request') }}" class="">Mot de passe oublié?</a></div>                                       
+                </div>				    
+				
+                <div class="form-group">
+					<button class="btn btn-primary" id="_submit" type="submit" name="_submit">
+                      {{ 'security.login.submit'|trans }}
+                      {# <i class="material-icons">send</i> #}
+                    </button>   
+				
+                  </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

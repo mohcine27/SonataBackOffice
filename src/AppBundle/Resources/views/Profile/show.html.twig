@@ -1,0 +1,14 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="fos_user_user_show">
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    </div>
+	{% if is_granted('ROLE_ADMIN')%}
+		<a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a>
+	{% endif %}
+	<a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
+	{# <p>{{ role}}</p> #}
+{% endblock body %}

@@ -1,0 +1,10 @@
+ {% trans_default_domain 'FOSUserBundle' %}
+ {% extends "base.html.twig" %} 
+
+ {% block body %} 
+    <h1>Liste des users</h1>
+	{% for user in users%}
+		<li>{{user.username|e}}</li>
+	{% endfor%}
+
+ {% endblock body %} 

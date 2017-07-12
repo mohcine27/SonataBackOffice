@@ -1,0 +1,77 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') }}"> 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+{{form_start(form, {'method': 'POST', 'attr':{'class': 'form-horizontal'}})}}
+  
+  <div class="form-group">
+      {{ form_label(form.username,"Login", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+   <div class="col-sm-4">
+      {# Génération de l'input. #}
+      {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {{ form_errors(form.username) }}
+  </div>
+  
+  <div class="form-group">
+      {{ form_label(form.email,"Email", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+   <div class="col-sm-4">
+      {# Génération de l'input. #}
+      {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {{ form_errors(form.email) }}
+  </div>
+  
+    <div class="form-group">
+	{{ form_label(form.name, null,{'label':'Nom', 'label_attr':{'class': 'col-sm-2 control-label'}})}}
+   <div class="col-sm-4">
+      {# Génération de l'input. #}      
+      {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {{ form_errors(form.name) }}
+  </div>
+  
+ <div class="form-group"> 
+	{{ form_label(form.roles, null,{'label':'Rôles', 'label_attr':{'class': 'col-sm-2 control-label'}})}}
+	<div class="checkbox-inline">
+      {# {# Génération de l'input. #}       
+       {{ form_widget(form.roles, {'attr':{'class': 'col-sm-2 control-label'}})}} 
+    </div>
+   {{ form_errors(form.roles) }} 
+  </div> 
+  
+   <div class="form-group"> 
+	{{ form_label(form.groups, null,{'label':'Groupes', 'label_attr':{'class': 'col-sm-2 control-label'}})}}
+	<div class="checkbox-inline">
+      {# {# Génération de l'input. #}       
+       {{ form_widget(form.groups, {'attr':{'class': 'col-lg control-label'}})}} 
+    </div>
+   {{ form_errors(form.groups) }} 
+  </div> 
+  
+  {# {{form_row(form.roles)}} #}
+  <div class="form-group">
+      {{ form_label(form.plainPassword.first,"Mot de passe", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+   <div class="col-sm-4">
+      {# Génération de l'input. #}
+      {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {{ form_errors(form.plainPassword.first) }}
+  </div>
+  
+  <div class="form-group">
+      {{ form_label(form.plainPassword.second,"Confirmation mot de passe", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+   <div class="col-sm-4">
+      {# Génération de l'input. #}
+      {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {{ form_errors(form.plainPassword.second) }}
+  </div>
+
+  
+  <div class="col-sm-4">
+    <button class="btn btn-primary" type="submit" name="action">
+      {{ 'registration.submit'|trans }}
+    </button>
+  </div>
+{{ form_end(form) }}

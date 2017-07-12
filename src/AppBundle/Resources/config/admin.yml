@@ -1,0 +1,32 @@
+
+services:
+    app.admin.blogpost:
+        class: AppBundle\Admin\BlogPostAdmin
+        arguments: [~, AppBundle\Entity\BlogPost, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Blog", group: "Gestion des blogs", label_catalogue: "AppBundle", icon: '<i class="fa fa-book" ></i>'}
+            
+    app.admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Utilisateur", group: "Gestion des utilisateurs", label_catalogue: "AppBundle", icon: '<i class="fa fa-users" ></i>'}
+        calls:
+            - [ setUserManager, ['@fos_user.user_manager']]
+            - [ addChild , ['@app.admin.groups']]
+    app.admin.groups:
+        class: AppBundle\Admin\GroupAdmin
+        arguments: [~, AppBundle\Entity\Group, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Groupe", group: "Gestion des Groupes", label_catalogue: "AppBundle", icon: '<i class="fa fa-cogs" ></i>'}
+        
+    app.admin.category:
+        class: AppBundle\Admin\CategoryAdmin
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Catégorie", group: "Gestion des catégories", label_catalogue: "AppBundle", show_mosaic_button: true, icon: '<i class="fa fa-tasks" ></i>' }
+        calls:
+            # - [ setTranslationDomain, [AppBundle]]
+            - [ addChild, ['@app.admin.blogpost']]
+    
+   
